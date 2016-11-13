@@ -3,17 +3,15 @@
 namespace Http\Factory\Diactoros;
 
 use Interop\Http\Factory\ServerRequestFactoryInterface;
-use Interop\Http\Factory\ServerRequestFromGlobalsFactoryInterface;
 use Zend\Diactoros\ServerRequest;
 use Zend\Diactoros\ServerRequestFactory as Factory;
 
 class ServerRequestFactory implements
-    ServerRequestFactoryInterface,
-    ServerRequestFromGlobalsFactoryInterface
+    ServerRequestFactoryInterface
 {
-    public function createServerRequest($method, $uri)
+    public function createServerRequest(array $server, $method = null, $uri = null)
     {
-        return new ServerRequest([], [], $uri, $method);
+        return new ServerRequest($server, [], $uri, $method);
     }
 
     public function createServerRequestFromGlobals()
